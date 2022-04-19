@@ -18,11 +18,15 @@ import javax.persistence.*;
 @Table(name = "EPISODE")
 @SequenceGenerator(name = "idGenerator", sequenceName = "EPISODE_SEQ", initialValue = 1, allocationSize = 1)
 public class Episode extends BaseModel {
-	
+
+
+	@Column(name = "EPISODE_NUMBER")
+	private int episodeNumber;
+
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Season season;
-	
-	@Column(name = "EPISODE_NUMBER")
-	private int episodeNumber;
+
+
+
 }

@@ -19,5 +19,8 @@ import java.util.Set;
 public class Series extends Show {
 
 
-
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "series", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private final Set<Season> sessions = new HashSet<>();
 }

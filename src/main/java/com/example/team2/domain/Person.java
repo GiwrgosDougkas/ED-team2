@@ -35,5 +35,8 @@ public class Person extends BaseModel {
 	@Enumerated(EnumType.STRING)
 	@Column(length = 10, nullable = false)
 	private Genre genre;
-	
+
+	@Enumerated(EnumType.STRING)
+	@Column(length = 10, nullable = false)
+	private PersonRole role;
 }

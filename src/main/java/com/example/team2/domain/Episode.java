@@ -1,5 +1,6 @@
 package com.example.team2.domain;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,6 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Data
 @SuperBuilder
@@ -18,11 +18,11 @@ import javax.validation.constraints.NotNull;
 @Table(name = "EPISODE")
 @SequenceGenerator(name = "idGenerator", sequenceName = "EPISODE_SEQ", initialValue = 1, allocationSize = 1)
 public class Episode extends BaseModel {
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Session session;
-
-    @Column(name="EPISODE_NUMBER")
-    private int episodeNumber;
+	
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private Season season;
+	
+	@Column(name = "EPISODE_NUMBER")
+	private int episodeNumber;
 }

@@ -7,8 +7,6 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -20,11 +18,11 @@ import java.util.Date;
 @Table(name = "REVIEW")
 @SequenceGenerator(name = "idGenerator", sequenceName = "REVIEW_SEQ", initialValue = 1, allocationSize = 1)
 public class Review extends BaseModel {
-
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "SUBMIT_DATE", nullable = false)
-    private Date submitDate;
-
-
+	
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "SUBMIT_DATE", nullable = false)
+	private Date submitDate;
+	
+	
 }

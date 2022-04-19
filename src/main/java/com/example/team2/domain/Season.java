@@ -7,11 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
-
+import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 
 @Data
@@ -23,9 +21,7 @@ import java.util.Set;
 @Table(name = "SESSION")
 @SequenceGenerator(name = "idGenerator", sequenceName = "SESSION_SEQ", initialValue = 1, allocationSize = 1)
 @JsonFilter("customerFilter")
-public class Session extends BaseModel {
-
-
+public class Season extends BaseModel {
 
 
 }

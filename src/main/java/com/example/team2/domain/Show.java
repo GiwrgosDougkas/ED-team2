@@ -1,7 +1,7 @@
 package com.example.team2.domain;
 
 import com.sun.istack.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -13,14 +13,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.DiscriminatorOptions;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @SuperBuilder
@@ -39,9 +38,9 @@ public class Show extends BaseModel {
   @Column(length = 2000, nullable = false)
   private String summary;
 
-  @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "RELEASE_DATE", nullable = false)
-  private Date releaseDate;
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  private LocalDate releaseDate;
 
   @Column()
   private int rating;

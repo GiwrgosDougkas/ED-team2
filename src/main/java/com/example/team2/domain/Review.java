@@ -5,9 +5,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Data
 @SuperBuilder
@@ -20,9 +22,9 @@ import java.util.Date;
 public class Review extends BaseModel {
 	
 	
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "SUBMIT_DATE", nullable = false)
-	private Date submitDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate submitDate;
 
 	@ManyToOne
 	private Show show;

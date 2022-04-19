@@ -24,6 +24,7 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @SuperBuilder
@@ -43,9 +44,9 @@ public class Person extends BaseModel {
 	@Column(name = "LAST_NAME", length = 50, nullable = false)
 	private String lastname;
 	
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATE_OF_BIRTH", nullable = false)
-	private Date dateOfBirth;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dateOfBirth;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 10, nullable = false)

@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class PersonServiceImpl extends BaseServiceImpl<Person> implements PersonService{
+public class PersonServiceImpl extends BaseServiceImpl<Person> implements PersonService {
 	
 	private final PersonRepository personRepository;
 	
@@ -24,5 +24,10 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
 	@Override
 	public List<Person> search(String searchTerm) {
 		return null;
+	}
+	
+	@Override
+	public List<Person> findAll() {
+		return personRepository.findAll();
 	}
 }

@@ -6,7 +6,7 @@
  */
 package com.example.team2.controller;
 
-import com.example.team2.domain.Movie;
+import com.example.team2.domain.Show;
 import com.example.team2.service.BaseService;
 import com.example.team2.service.MovieService;
 import com.example.team2.transfer.ApiResponse;
@@ -22,18 +22,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/movies")
 @RequiredArgsConstructor
-public class MoviesController extends AbstractController<Movie> {
+public class MoviesController extends AbstractController<Show> {
 	
 	private final MovieService movieService;
 	
 	
 	@Override
-	protected BaseService<Movie, Long> getBaseService() {
+	protected BaseService<Show, Long> getBaseService() {
 		return this.movieService;
 	}
 	
 	@GetMapping("getByTitle/{title}")
-	public ResponseEntity<ApiResponse<List<Movie>>> findByTitle(@PathVariable("title") String title) {
-		return ResponseEntity.ok(ApiResponse.<List<Movie>>builder().data(movieService.findByTitle(title)).build());
+	public ResponseEntity<ApiResponse<List<Show>>> findByTitle(@PathVariable("title") String title) {
+		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(movieService.findByTitle(title)).build());
 	}
 }

@@ -1,12 +1,12 @@
 package com.example.team2.service;
 
-import com.example.team2.domain.Movie;
+import com.example.team2.domain.Show;
 
 import java.util.List;
 
-public interface MovieService extends BaseService<Movie, Long> {
+public interface MovieService extends BaseService<Show, Long> {
 	
-	List<Movie> findAll();
-	
-	List<Movie> findByTitle(String title);
+	List<Show> findAll();
+
+	List<Show> findByTitle(String title);
 }

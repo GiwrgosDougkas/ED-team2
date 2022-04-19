@@ -1,6 +1,8 @@
 package com.example.team2.domain;
 
 import com.sun.istack.NotNull;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -47,7 +49,7 @@ public class Person extends BaseModel {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 10, nullable = false)
-	private Gender genre;
+	private Gender gender;
 
 	@Enumerated(EnumType.STRING)
 	@Column(length = 10, nullable = false)

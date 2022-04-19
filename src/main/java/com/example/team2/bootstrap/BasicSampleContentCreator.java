@@ -1,10 +1,8 @@
 package com.example.team2.bootstrap;
 
 import com.example.team2.base.BaseComponent;
-import com.example.team2.domain.Gender;
-import com.example.team2.domain.Movie;
-import com.example.team2.domain.Person;
-import com.example.team2.domain.PersonRole;
+import com.example.team2.domain.*;
+import com.example.team2.service.LanguageService;
 import com.example.team2.service.MovieService;
 import com.example.team2.service.PersonService;
 import lombok.RequiredArgsConstructor;
@@ -22,9 +20,12 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
 
     private final PersonService personService;
     private final MovieService movieService;
+    private final LanguageService languageService;
     @Override
     public void run(String... args) throws Exception {
         //add language
+        languageService.create(Language.builder().langCode("GR").langFull("GREECE").build());
+        languageService.create(Language.builder().langCode("EN").langFull("ENGLISH").build());
 
         //add person
         personService.create(Person.builder().firstname("Angelina").lastname("Jolie").dateOfBirth(LocalDate.of(1982,10,10)).gender(Gender.FEMALE).role(PersonRole.ACTOR).build());
@@ -50,8 +51,20 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
         movieService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2003,1,8)).title("The Lord of the rings III").summary("adventure").build());
         movieService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2001,11,7)).title("Fast 2 and Furious").summary("action").build());
         movieService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2003,1,1)).title("2 Fast 2 Furious").summary("action").build());
-        movieService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2003,15,11)).title("Fast and Furious Tokyo Drift").summary("action").build());
+        movieService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2003,11,11)).title("Fast and Furious Tokyo Drift").summary("action").build());
         movieService.create(Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2009,2,11)).title("Fast and Furious 4").summary("action").build());
 
+        //add series
+        movieService.create(Series.builder().originCountry("GREECE").rating(4).releaseDate(LocalDate.of(2000,3,11)).title("10 lepta kurhgma").summary("comedy").build());
+        movieService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(2001,4 ,10)).title("Eisai to tairi mou").summary("romance").build());
+        movieService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(1998,7,1)).title("Konstantinou & Elenhs").summary("comedy").build());
+        movieService.create(Series.builder().originCountry("GREECE").rating(3).releaseDate(LocalDate.of(2000,1,1)).title("Duo ksenoi").summary("comedy").build());
+        movieService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(1998,1,1)).title("Egglhmata").summary("comedy").build());
+        movieService.create(Series.builder().originCountry("GREECE").rating(2).releaseDate(LocalDate.of(1998,1,1)).title("Sto para pente").summary("comedy").build());
+        movieService.create(Series.builder().originCountry("GREECE").rating(2).releaseDate(LocalDate.of(2005,1,1)).title("Singles").summary("comedy").build());
+
+
+        //TODO resolve error
+       //movieService.create(Season.builder().series((Series)movieService.findByTitle("Singles").get(0)).build());
     }
 }

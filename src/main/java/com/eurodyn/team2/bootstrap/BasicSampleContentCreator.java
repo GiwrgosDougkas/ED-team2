@@ -2,18 +2,15 @@ package com.eurodyn.team2.bootstrap;
 
 import com.eurodyn.team2.base.BaseComponent;
 import com.eurodyn.team2.domain.*;
-import com.eurodyn.team2.service.GenreService;
-import com.eurodyn.team2.service.LanguageService;
-import com.eurodyn.team2.service.MovieService;
-import com.eurodyn.team2.service.PersonService;
-import com.eurodyn.team2.domain.*;
+import com.eurodyn.team2.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.Charset;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 
 
 @Component
@@ -22,9 +19,10 @@ import java.util.List;
 public class BasicSampleContentCreator extends BaseComponent implements CommandLineRunner {
 
     private final PersonService personService;
-    private final MovieService movieService;
+    private final ShowService showService;
     private final LanguageService languageService;
     private final GenreService genreService;
+    private final ReviewService reviewService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -39,7 +37,6 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
         genreService.createAll(genreList);
 
 
-        //add language
         // Create Laguages
         List<Language> languageList = List.of(Language.builder().langCode("EN").langFull("English").build(),
                 Language.builder().langCode("DE").langFull("German").build());
@@ -61,29 +58,45 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
         personService.create(Person.builder().firstname("Michael").lastname("Ronne").dateOfBirth(LocalDate.of(1988, 8, 28)).gender(Gender.MALE).role(PersonRole.STAFF).build());
 
         //add movie
-        movieService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2021, 1, 1)).title("Spy").summary("comedy").build());
-        movieService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2009, 12, 1)).title("The Hangover I").summary("comedy").build());
-        movieService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2011, 11, 15)).title("The Hangover II").summary("comedy").build());
-        movieService.create(Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2013, 7, 12)).title("The Hangover III").summary("comedy").build());
-        movieService.create(Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2001, 3, 19)).title("The Lord of the rings I").summary("adventure").build());
-        movieService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2002, 9, 1)).title("The Lord of the rings II").summary("adventure").build());
-        movieService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2003, 1, 8)).title("The Lord of the rings III").summary("adventure").build());
-        movieService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2001, 11, 7)).title("Fast 2 and Furious").summary("action").build());
-        movieService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2003, 1, 1)).title("2 Fast 2 Furious").summary("action").build());
-        movieService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2003, 11, 11)).title("Fast and Furious Tokyo Drift").summary("action").build());
-        movieService.create(Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2009, 2, 11)).title("Fast and Furious 4").summary("action").build());
+        showService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2021, 1, 1)).title("Spy").summary("comedy").languages(Set.of(languageList.get(0))).reviews(generateRandomReviewSet()).build());
+        showService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2009, 12, 1)).title("The Hangover I").summary("comedy").build());
+        showService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2011, 11, 15)).title("The Hangover II").summary("comedy").build());
+        showService.create(Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2013, 7, 12)).title("The Hangover III").summary("comedy").build());
+        showService.create(Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2001, 3, 19)).title("The Lord of the rings I").summary("adventure").build());
+        showService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2002, 9, 1)).title("The Lord of the rings II").summary("adventure").build());
+        showService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2003, 1, 8)).title("The Lord of the rings III").summary("adventure").build());
+        showService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2001, 11, 7)).title("Fast 2 and Furious").summary("action").build());
+        showService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2003, 1, 1)).title("2 Fast 2 Furious").summary("action").build());
+        showService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2003, 11, 11)).title("Fast and Furious Tokyo Drift").summary("action").build());
+        showService.create(Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2009, 2, 11)).title("Fast and Furious 4").summary("action").build());
 
         //add series
-        movieService.create(Series.builder().originCountry("GREECE").rating(4).releaseDate(LocalDate.of(2000, 3, 11)).title("10 lepta kurhgma").summary("comedy").build());
-        movieService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(2001, 4, 10)).title("Eisai to tairi mou").summary("romance").build());
-        movieService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(1998, 7, 1)).title("Konstantinou & Elenhs").summary("comedy").build());
-        movieService.create(Series.builder().originCountry("GREECE").rating(3).releaseDate(LocalDate.of(2000, 1, 1)).title("Duo ksenoi").summary("comedy").build());
-        movieService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(1998, 1, 1)).title("Egglhmata").summary("comedy").build());
-        movieService.create(Series.builder().originCountry("GREECE").rating(2).releaseDate(LocalDate.of(1998, 1, 1)).title("Sto para pente").summary("comedy").build());
-        movieService.create(Series.builder().originCountry("GREECE").rating(2).releaseDate(LocalDate.of(2005, 1, 1)).title("Singles").summary("comedy").build());
+        showService.create(Series.builder().originCountry("GREECE").rating(4).releaseDate(LocalDate.of(2000, 3, 11)).title("10 lepta kurhgma").summary("comedy").build());
+        showService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(2001, 4, 10)).title("Eisai to tairi mou").summary("romance").build());
+        showService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(1998, 7, 1)).title("Konstantinou & Elenhs").summary("comedy").build());
+        showService.create(Series.builder().originCountry("GREECE").rating(3).releaseDate(LocalDate.of(2000, 1, 1)).title("Duo ksenoi").summary("comedy").build());
+        showService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(1998, 1, 1)).title("Egglhmata").summary("comedy").build());
+        showService.create(Series.builder().originCountry("GREECE").rating(2).releaseDate(LocalDate.of(1998, 1, 1)).title("Sto para pente").summary("comedy").build());
+        showService.create(Series.builder().originCountry("GREECE").rating(2).releaseDate(LocalDate.of(2005, 1, 1)).title("Singles").summary("comedy").build());
 
 
         //TODO resolve error
         //movieService.create(Season.builder().series((Series)movieService.findByTitle("Singles").get(0)).build());
+    }
+
+    private Set<Review> generateRandomReviewSet() {
+        Set<Review> reviewSet = new HashSet<>();
+
+        Random rand = new Random();
+        int randomNum = rand.nextInt((5 - 1) + 1) + 1;
+
+        // length is bounded by 7
+        for (int i = 0; i < randomNum; i++) {
+
+            String generatedRandomString = Long.toHexString(Double.doubleToLongBits(Math.random()));
+            reviewSet.add(Review.builder().submitDate(LocalDate.of(2001, 4, 10)).reviewText(generatedRandomString).build());
+        }
+
+        return reviewSet;
     }
 }

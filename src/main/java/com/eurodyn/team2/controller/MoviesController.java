@@ -8,7 +8,7 @@ package com.eurodyn.team2.controller;
 
 import com.eurodyn.team2.domain.Show;
 import com.eurodyn.team2.service.BaseService;
-import com.eurodyn.team2.service.MovieService;
+import com.eurodyn.team2.service.ShowService;
 import com.eurodyn.team2.transfer.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,16 +24,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MoviesController extends AbstractController<Show> {
 	
-	private final MovieService movieService;
+	private final ShowService showService;
 	
 	
 	@Override
 	protected BaseService<Show, Long> getBaseService() {
-		return this.movieService;
+		return this.showService;
 	}
 	
 	@GetMapping("getByTitle/{title}")
 	public ResponseEntity<ApiResponse<List<Show>>> findByTitle(@PathVariable("title") String title) {
-		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(movieService.findByTitle(title)).build());
+		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(showService.findByTitle(title)).build());
 	}
 }

@@ -1,5 +1,6 @@
 package com.eurodyn.team2.domain;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -20,12 +21,15 @@ import java.time.LocalDate;
 @Table(name = "REVIEW")
 @SequenceGenerator(name = "idGenerator", sequenceName = "REVIEW_SEQ",  initialValue = 1, allocationSize = 1)
 public class Review extends BaseModel {
-	
-	
+
+	@Column(name ="REVIEW_TEST")
+	@Lob
+	private String reviewText;
+
 	@Column(name = "SUBMIT_DATE", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate submitDate;
-
+	
 	@ManyToOne
 	private Show show;
 }

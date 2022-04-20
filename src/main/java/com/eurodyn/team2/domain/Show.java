@@ -68,7 +68,7 @@ public class Show extends BaseModel {
       @JoinColumn(name = "LANG_ID", referencedColumnName = "ID")})
   private Set<Language> languages = new HashSet<>();
 
-  @OneToMany(mappedBy = "show")
+  @OneToMany(mappedBy = "show", cascade = javax.persistence.CascadeType.ALL, orphanRemoval = true)
   private Set<Review> reviews = new HashSet<>();
 
 /*

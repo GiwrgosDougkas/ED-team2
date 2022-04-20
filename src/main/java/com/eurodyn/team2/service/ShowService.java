@@ -4,7 +4,7 @@ import com.eurodyn.team2.domain.Show;
 
 import java.util.List;
 
-public interface MovieService extends BaseService<Show, Long> {
+public interface ShowService extends BaseService<Show, Long> {
 	
 	List<Show> findAll();
 

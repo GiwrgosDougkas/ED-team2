@@ -2,7 +2,7 @@ package com.eurodyn.team2.service.Impl;
 
 import com.eurodyn.team2.repository.MovieRepository;
 import com.eurodyn.team2.domain.Show;
-import com.eurodyn.team2.service.MovieService;
+import com.eurodyn.team2.service.ShowService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class MovieServiceImpl extends BaseServiceImpl<Show> implements MovieService {
+public class ShowServiceImpl extends BaseServiceImpl<Show> implements ShowService {
 	
 	private final MovieRepository movieRepository;
 

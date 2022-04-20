@@ -22,7 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/movies")
 @RequiredArgsConstructor
-public class MoviesController extends AbstractController<Show> {
+public class ShowsController extends AbstractController<Show> {
 	
 	private final ShowService showService;
 	

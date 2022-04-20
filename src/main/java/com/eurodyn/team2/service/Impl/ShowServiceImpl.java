@@ -1,7 +1,7 @@
 package com.eurodyn.team2.service.Impl;
 
-import com.eurodyn.team2.repository.MovieRepository;
 import com.eurodyn.team2.domain.Show;
+import com.eurodyn.team2.repository.ShowRepository;
 import com.eurodyn.team2.service.ShowService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,11 +16,11 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class ShowServiceImpl extends BaseServiceImpl<Show> implements ShowService {
 	
-	private final MovieRepository movieRepository;
-
+	private final ShowRepository showRepository;
+	
 	@Override
 	public JpaRepository<Show, Long> getRepository() {
-		return movieRepository;
+		return showRepository;
 	}
 	
 	@Override
@@ -30,11 +30,11 @@ public class ShowServiceImpl extends BaseServiceImpl<Show> implements ShowServic
 	
 	@Override
 	public List<Show> findAll() {
-		return movieRepository.findAll();
+		return showRepository.findAll();
 	}
-
+	
 	@Override
 	public List<Show> findByTitle(String title) {
-		return movieRepository.findByTitle(title);
+		return showRepository.findByTitle(title);
 	}
 }

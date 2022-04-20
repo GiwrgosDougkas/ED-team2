@@ -1,5 +1,6 @@
 package com.eurodyn.team2.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -21,6 +22,7 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.DiscriminatorOptions;
 import org.springframework.format.annotation.DateTimeFormat;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Data
 @SuperBuilder
 @NoArgsConstructor

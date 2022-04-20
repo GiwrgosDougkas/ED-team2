@@ -1,6 +1,7 @@
 package com.eurodyn.team2.service.Impl;
 
 import com.eurodyn.team2.domain.Person;
+import com.eurodyn.team2.domain.PersonRole;
 import com.eurodyn.team2.repository.PersonRepository;
 import com.eurodyn.team2.service.PersonService;
 import java.util.List;
@@ -42,5 +43,15 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
 	@Scheduled(cron = "0 * * * * 1-5")
 	public void evictCaches() {
 		logger.debug("Evict persons caches");
+	}
+
+	@Override
+	public List<Person> findPersonByRole(PersonRole role){
+		return personRepository.findPersonByRole(role);
+	}
+	@Override
+	public List<String> findActorsByShow(String show){
+		return personRepository.findActorsByShow(show);
+
 	}
 }

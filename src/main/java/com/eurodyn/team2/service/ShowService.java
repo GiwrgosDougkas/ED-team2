@@ -8,7 +8,11 @@ public interface ShowService extends BaseService<Show, Long> {
 	
 	List<Show> findAll();
 	
-	List<Show> findByTitle(String title);
+	List<Show> findMovieByTitle(String title);
 	
-	List<Show> findByGenre(String genre);
+	List<Show> findMovieByGenre(String genre);
+	
+	List<Show> findSeriesByTitle(String title);
+	
+	List<Show> findSeriesByGenre(String genre);
 }

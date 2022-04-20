@@ -41,14 +41,25 @@ public class ShowServiceImpl extends BaseServiceImpl<Show> implements ShowServic
 	}
 	
 	@Override
-	public List<Show> findByTitle(String title) {
-		return showRepository.findByTitle(title);
+	public List<Show> findMovieByTitle(String title) {
+		return showRepository.findMoviesByTitle(title);
 	}
 	
 	@Override
-	public List<Show> findByGenre(String genre) {
-		return showRepository.findByGenre(genre);
+	public List<Show> findMovieByGenre(String genre) {
+		return showRepository.findMoviesByGenre(genre);
 	}
+	
+	@Override
+	public List<Show> findSeriesByTitle(String title) {
+		return showRepository.findSeriesByTitle(title);
+	}
+	
+	@Override
+	public List<Show> findSeriesByGenre(String genre) {
+		return showRepository.findSeriesByGenre(genre);
+	}
+	
 	
 	@CacheEvict(cacheNames = "shows", allEntries = true)
 	@Scheduled(cron = "0 * * * * 1-5")

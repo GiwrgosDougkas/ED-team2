@@ -32,13 +32,23 @@ public class ShowsController extends AbstractController<Show> {
 		return this.showService;
 	}
 	
-	@GetMapping("getByTitle/{title}")
-	public ResponseEntity<ApiResponse<List<Show>>> findByTitle(@PathVariable("title") String title) {
-		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(showService.findByTitle(title)).build());
+	@GetMapping("getMovieByTitle/{title}")
+	public ResponseEntity<ApiResponse<List<Show>>> findMovieByTitle(@PathVariable("title") String title) {
+		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(showService.findMovieByTitle(title)).build());
 	}
 	
-	@GetMapping("getByGenre/{genre}")
-	public ResponseEntity<ApiResponse<List<Show>>> findByGenre(@PathVariable("genre") String genre) {
-		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(showService.findByGenre(genre)).build());
+	@GetMapping("getSeriesByTitle/{title}")
+	public ResponseEntity<ApiResponse<List<Show>>> findSeriesByTitle(@PathVariable("title") String title) {
+		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(showService.findSeriesByTitle(title)).build());
+	}
+	
+	@GetMapping("getMovieByGenre/{genre}")
+	public ResponseEntity<ApiResponse<List<Show>>> findMovieByGenre(@PathVariable("genre") String genre) {
+		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(showService.findMovieByGenre(genre)).build());
+	}
+	
+	@GetMapping("getSeriesByGenre/{genre}")
+	public ResponseEntity<ApiResponse<List<Show>>> findSeriesByGenre(@PathVariable("genre") String genre) {
+		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(showService.findSeriesByGenre(genre)).build());
 	}
 }

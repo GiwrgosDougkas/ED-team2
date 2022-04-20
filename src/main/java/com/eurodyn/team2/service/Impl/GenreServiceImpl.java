@@ -18,8 +18,10 @@ public class GenreServiceImpl extends BaseServiceImpl<Genre> implements GenreSer
     public JpaRepository<Genre, Long> getRepository() {
         return genreRepository;
     }
-
-
-
-
+    
+    
+    @Override
+    public Genre findByName(String name) {
+        return genreRepository.findByName(name);
+    }
 }

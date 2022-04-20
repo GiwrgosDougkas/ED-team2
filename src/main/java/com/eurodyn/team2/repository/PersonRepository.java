@@ -11,7 +11,9 @@ import java.util.List;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
-
+	
+	Person findByLastname (String lastname);
+	
     List<Person> findPersonByRole(PersonRole role);
 
     @Query("select  concat(o.firstname, ' ', o.lastname) from Person o join o.shows s where s.title = ?1")

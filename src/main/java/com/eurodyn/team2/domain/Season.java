@@ -3,13 +3,8 @@ package com.eurodyn.team2.domain;
 import com.sun.istack.NotNull;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -26,7 +21,11 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "SEASON")
 @SequenceGenerator(name = "idGenerator", sequenceName = "SEASON_SEQ",  initialValue = 1, allocationSize = 1)
 public class Season extends BaseModel {
-
+    
+    
+    @Column(name = "SEASON_NUMBER")
+    private int seasonNumber;
+    
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Series series;

@@ -6,15 +6,7 @@ import com.sun.istack.NotNull;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -55,11 +47,11 @@ public class Person extends BaseModel {
 	@Column(length = 10, nullable = false)
 	private PersonRole role;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "SHOW_CAST", joinColumns = {
 			@JoinColumn(name = "FK_CAST_PERSON_ID")}, inverseJoinColumns = {
 			@JoinColumn(name = "FK_SHOW_CAST_ID")})
-	@Cascade({CascadeType.MERGE, CascadeType.PERSIST})
+	@Cascade({CascadeType.MERGE})
 	private Set<Show> shows = new HashSet<>();
 
 

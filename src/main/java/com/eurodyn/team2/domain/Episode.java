@@ -1,5 +1,6 @@
 package com.eurodyn.team2.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,6 +26,7 @@ public class Episode extends BaseModel {
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JsonBackReference("episodes")
 	private Season season;
 
 

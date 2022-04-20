@@ -5,15 +5,8 @@ import com.sun.istack.NotNull;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -50,21 +43,21 @@ public class Show extends BaseModel {
   @Column(name = "ORIGIN_COUNTRY")
   private String originCountry;
 
-  @OneToMany
+  @ManyToMany
   @JoinTable(name = "SHOW_GENRE", joinColumns = {
       @JoinColumn(name = "FK_SHOW_ID")}, inverseJoinColumns = {
       @JoinColumn(name = "FK_GENRE_ID")})
-  @Cascade({CascadeType.MERGE, CascadeType.PERSIST})
+  @Cascade({CascadeType.MERGE})
   private Set<Genre> genre = new HashSet<>();
 
-  @ManyToMany
+  @ManyToMany (fetch = FetchType.EAGER)
   @JoinTable(name = "SHOW_CAST", joinColumns = {
       @JoinColumn(name = "FK_SHOW_CAST_ID")}, inverseJoinColumns = {
       @JoinColumn(name = "FK_CAST_PERSON_ID")})
-  @Cascade({CascadeType.MERGE, CascadeType.PERSIST})
+  @Cascade({CascadeType.MERGE})
   private Set<Person> cast = new HashSet<>();
 
-  @OneToMany
+  @ManyToMany
   @JoinTable(name = "SHOW_LANGUAGE", joinColumns = {
       @JoinColumn(name = "FK_SHOW_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
       @JoinColumn(name = "LANG_ID", referencedColumnName = "ID")})

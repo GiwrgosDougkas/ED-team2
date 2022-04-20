@@ -38,7 +38,12 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
 		logger.info("List does not exist in cache, fetching from repository.");
 		return personRepository.findAll();
 	}
-
+	
+	@Override
+	public Person findByLastname(String lastname) {
+		return personRepository.findByLastname(lastname);
+	}
+	
 	@CacheEvict(cacheNames = "persons", allEntries = true)
 	@Scheduled(cron = "0 * * * * 1-5")
 	public void evictCaches() {

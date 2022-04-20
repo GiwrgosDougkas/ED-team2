@@ -8,6 +8,9 @@ import java.util.List;
 public interface PersonService extends BaseService<Person, Long> {
 	
 	List<Person> findAll();
+	
+     Person findByLastname (String lastname);
+
 
 	List<Person> findPersonByRole(PersonRole role);
 

@@ -31,7 +31,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "PERSON")
-@SequenceGenerator(name = "idGenerator", sequenceName = "PERSON_SEQ", allocationSize = 1)
+@SequenceGenerator(name = "idGenerator", sequenceName = "PERSON_SEQ",  initialValue = 1, allocationSize = 1)
 public class Person extends BaseModel {
 	
 	@NotNull

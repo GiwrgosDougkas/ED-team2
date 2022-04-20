@@ -8,7 +8,7 @@
 		<version>2.6.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>com.eurodyn</groupId>
 	<artifactId>team2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>team2</name>

@@ -24,7 +24,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "SEASON")
-@SequenceGenerator(name = "idGenerator", sequenceName = "SEASON_SEQ", allocationSize = 1)
+@SequenceGenerator(name = "idGenerator", sequenceName = "SEASON_SEQ",  initialValue = 1, allocationSize = 1)
 public class Season extends BaseModel {
 
     @NotNull

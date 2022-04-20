@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "GENRE")
-@SequenceGenerator(name = "idGenerator", sequenceName = "GENRE_SEQ", allocationSize = 1)
+@SequenceGenerator(name = "idGenerator", sequenceName = "GENRE_SEQ",  initialValue = 1, allocationSize = 1)
 public class Genre extends BaseModel {
 	
 	private String name;

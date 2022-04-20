@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "REVIEW")
-@SequenceGenerator(name = "idGenerator", sequenceName = "REVIEW_SEQ", allocationSize = 1)
+@SequenceGenerator(name = "idGenerator", sequenceName = "REVIEW_SEQ",  initialValue = 1, allocationSize = 1)
 public class Review extends BaseModel {
 	
 	

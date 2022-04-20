@@ -28,9 +28,6 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
 
     @Override
     public void run(String... args) throws Exception {
-        //add language
-        languageService.create(Language.builder().langCode("GR").langFull("GREECE").build());
-        languageService.create(Language.builder().langCode("EN").langFull("ENGLISH").build());
 
         // Create Geres
         List<Genre> genreList = List.of(Genre.builder().name("Action").build(),
@@ -40,6 +37,14 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
                 Genre.builder().name("Adventure").build(),
                 Genre.builder().name("Documentary").build());
         genreService.createAll(genreList);
+
+
+        //add language
+        // Create Laguages
+        List<Language> languageList = List.of(Language.builder().langCode("EN").langFull("English").build(),
+                Language.builder().langCode("DE").langFull("German").build());
+        languageService.createAll(languageList);
+
 
         //add person
         personService.create(Person.builder().firstname("Angelina").lastname("Jolie").dateOfBirth(LocalDate.of(1982, 10, 10)).gender(Gender.FEMALE).role(PersonRole.ACTOR).build());

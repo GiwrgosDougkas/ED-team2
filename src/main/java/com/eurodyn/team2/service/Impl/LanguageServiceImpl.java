@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class LanguageServiceImpl extends BaseServiceImpl<Language> implements LanguageService {
-    private LanguageRepository languageRepository;
+    private final LanguageRepository languageRepository;
 
     @Override
     public JpaRepository<Language, Long> getRepository() {

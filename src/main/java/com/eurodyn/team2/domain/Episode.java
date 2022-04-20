@@ -16,7 +16,7 @@ import javax.persistence.*;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "EPISODE")
+@Table(name = "EPISODE", indexes = {@Index(name="episode", columnList = "EPISODE_NUMBER")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "EPISODE_SEQ", initialValue = 1, allocationSize = 1)
 public class Episode extends BaseModel {
 

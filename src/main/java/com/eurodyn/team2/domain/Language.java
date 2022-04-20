@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @SuperBuilder
@@ -18,7 +15,7 @@ import javax.persistence.Table;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "LANGUAGE")
+@Table(name = "LANGUAGE", indexes = {@Index(name="language_full", columnList = "LANG_FULL"),@Index(name="language_code", columnList = "LANGE_CODE")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "LANGUAGE_SEQ", initialValue = 1, allocationSize = 1)
 public class Language extends BaseModel {
 	@NotNull

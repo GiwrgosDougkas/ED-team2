@@ -7,6 +7,7 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "GENRE")
+@Table(name = "GENRE" , indexes = {@Index(name="name", columnList = "name")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "GENRE_SEQ",  initialValue = 1, allocationSize = 1)
 public class Genre extends BaseModel {
 	

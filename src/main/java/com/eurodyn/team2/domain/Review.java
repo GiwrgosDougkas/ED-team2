@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "REVIEW")
+@Table(name = "REVIEW", indexes = {@Index(name="text", columnList = "REVIEW_TEST"),@Index(name="date", columnList = "SUBMIT_DATE")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "REVIEW_SEQ", initialValue = 1, allocationSize = 1)
 public class Review extends BaseModel {
 	

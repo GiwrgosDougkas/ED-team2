@@ -23,7 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "PERSON")
+@Table(name = "PERSON", indexes = {@Index(name="first_last_name",columnList = "FIRST_NAME,LAST_NAME"),@Index(name="first_name",columnList = "FIRST_NAME"),@Index(name="last_name", columnList="LAST_NAME")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "PERSON_SEQ",  initialValue = 1, allocationSize = 1)
 public class Person extends BaseModel {
 	

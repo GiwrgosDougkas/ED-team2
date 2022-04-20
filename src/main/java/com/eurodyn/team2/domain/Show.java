@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @SuperBuilder
 @NoArgsConstructor
 @Entity
-@Table(name = "SHOW")
+@Table(name = "SHOW", indexes = {@Index(name="title", columnList = "title")})
 @DiscriminatorColumn(name = "SHOW_TYPE", discriminatorType = DiscriminatorType.INTEGER)
 @DiscriminatorOptions(force = true)
 public class Show extends BaseModel {

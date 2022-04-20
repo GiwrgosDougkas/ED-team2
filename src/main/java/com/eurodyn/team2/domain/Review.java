@@ -18,11 +18,11 @@ import java.time.LocalDate;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "REVIEW", indexes = {@Index(name="text", columnList = "REVIEW_TEST"),@Index(name="date", columnList = "SUBMIT_DATE")})
+@Table(name = "REVIEW", indexes = {@Index(name="text", columnList = "REVIEW_TEXT"),@Index(name="date", columnList = "SUBMIT_DATE")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "REVIEW_SEQ", initialValue = 1, allocationSize = 1)
 public class Review extends BaseModel {
 	
-	@Column(name = "REVIEW_TEST")
+	@Column(name = "REVIEW_TEXT")
 	@Lob
 	private String reviewText;
 	

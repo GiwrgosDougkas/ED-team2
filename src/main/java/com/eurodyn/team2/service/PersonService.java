@@ -9,10 +9,9 @@ public interface PersonService extends BaseService<Person, Long> {
 	
 	List<Person> findAll();
 	
-     Person findByLastname (String lastname);
-
-
 	List<Person> findPersonByRole(PersonRole role);
 
 	List<String> findActorsByShow(String show);
+	
+	Person findByFirstAndLastName(String firstname, String lastname);
 }

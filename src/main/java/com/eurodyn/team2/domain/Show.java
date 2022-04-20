@@ -56,7 +56,6 @@ public class Show extends BaseModel {
       @JoinColumn(name = "FK_SHOW_CAST_ID")}, inverseJoinColumns = {
       @JoinColumn(name = "FK_CAST_PERSON_ID")})
   @Cascade({CascadeType.MERGE})
-  @Where(clause = "role=ACTOR")
   private Set<Person> cast = new HashSet<>();
 
   @ManyToMany

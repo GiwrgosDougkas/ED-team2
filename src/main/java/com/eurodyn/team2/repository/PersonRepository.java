@@ -11,11 +11,12 @@ import java.util.List;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
-	
-	Person findByLastname (String lastname);
-	
+    
     List<Person> findPersonByRole(PersonRole role);
 
     @Query("select  concat(o.firstname, ' ', o.lastname) from Person o join o.shows s where s.title = ?1")
     List<String> findActorsByShow(String show);
+    
+    @Query("select p from Person p where p.firstname = ?1 AND p.lastname = ?2")
+    Person findByFirstAndLastName (String firstname, String lastname);
 }

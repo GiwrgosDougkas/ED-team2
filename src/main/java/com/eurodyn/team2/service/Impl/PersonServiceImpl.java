@@ -40,8 +40,8 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
 	}
 	
 	@Override
-	public Person findByLastname(String lastname) {
-		return personRepository.findByLastname(lastname);
+	public Person findByFirstAndLastName(String firstname, String lastname) {
+		return personRepository.findByFirstAndLastName(firstname, lastname);
 	}
 	
 	@CacheEvict(cacheNames = "persons", allEntries = true)

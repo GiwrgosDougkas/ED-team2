@@ -23,6 +23,9 @@ public class Episode extends BaseModel {
 
 	@Column(name = "EPISODE_NUMBER")
 	private int episodeNumber;
+	
+	@Column(name = "EPISODE_TITLE")
+	private String episodeTitle;
 
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)

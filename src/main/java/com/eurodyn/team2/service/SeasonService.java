@@ -4,6 +4,6 @@ import com.eurodyn.team2.domain.Season;
 
 public interface SeasonService extends BaseService<Season, Long>{
 	
-	Season findBySeasonNumber(int seasonNumber);
+	Season findBySeasonNumberAndSeriesTitle(int seasonNumber, String seriesTitle);
 	
 }

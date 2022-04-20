@@ -24,7 +24,6 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
 	private final ShowService showService;
 	private final LanguageService languageService;
 	private final GenreService genreService;
-	private final ReviewService reviewService;
 	private final SeasonService seasonService;
 	private final EpisodeService episodeService;
 	
@@ -81,23 +80,27 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
 		}
 		
 		//add series
-		showService.create(Series.builder().originCountry("GREECE").rating(4).releaseDate(LocalDate.of(2000, 3, 11)).title("10 lepta kurhgma").summary("comedy").cast(Set.of(personService.findByLastname("Jolie"), personService.findByLastname("kennedy"))).genre(Set.of(genreService.findByName("Documentary"), genreService.findByName("Drama"))).languages(Set.of(languageList.get(0), languageList.get(1))).build());
-		showService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(2001, 4, 10)).title("Eisai to tairi mou").summary("romance").cast(Set.of(personService.findByLastname("kennedy"), personService.findByLastname("Brown"))).genre(Set.of(genreService.findByName("Adventure"))).languages(Set.of(languageList.get(0))).build());
-		showService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(1998, 7, 1)).title("Konstantinou & Elenhs").summary("comedy").cast(Set.of(personService.findByLastname("Heyman"), personService.findByLastname("Cruise"))).genre(Set.of(genreService.findByName("Comedy"), genreService.findByName("Adventure"))).languages(Set.of(languageList.get(0), languageList.get(1))).build());
-		showService.create(Series.builder().originCountry("GREECE").rating(3).releaseDate(LocalDate.of(2000, 1, 1)).title("Duo ksenoi").summary("comedy").cast(Set.of(personService.findByLastname("Portman"), personService.findByLastname("Clooney"))).genre(Set.of(genreService.findByName("Comedy"))).languages(Set.of(languageList.get(0), languageList.get(1))).build());
-		showService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(1998, 1, 1)).title("Egglhmata").summary("comedy").cast(Set.of(personService.findByLastname("Portman"), personService.findByLastname("Feige"))).genre(Set.of(genreService.findByName("Adventure"))).languages(Set.of(languageList.get(1))).build());
-		showService.create(Series.builder().originCountry("GREECE").rating(2).releaseDate(LocalDate.of(1998, 1, 1)).title("Sto para pente").summary("comedy").cast(Set.of(personService.findByLastname("Clooney"), personService.findByLastname("Cruise"))).genre(Set.of(genreService.findByName("Comedy"))).languages(Set.of(languageList.get(0), languageList.get(1))).build());
-		showService.create(Series.builder().originCountry("GREECE").rating(2).releaseDate(LocalDate.of(2005, 1, 1)).title("Singles").summary("comedy").cast(Set.of(personService.findByLastname("Jolie"), personService.findByLastname("Pitt"))).genre(Set.of(genreService.findByName("Action"), genreService.findByName("Drama"))).languages(Set.of(languageList.get(0), languageList.get(1))).build());
+		showService.create(Series.builder().originCountry("GREECE").rating(4).releaseDate(LocalDate.of(2000, 3, 11)).title("10 lepta kurhgma").summary("comedy").cast(Set.of(personService.findByFirstAndLastName("Angelina","Jolie"), personService.findByFirstAndLastName("kathleen","kennedy"))).genre(Set.of(genreService.findByName("Documentary"), genreService.findByName("Drama"))).languages(Set.of(languageList.get(0), languageList.get(1))).build());
+		showService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(2001, 4, 10)).title("Eisai to tairi mou").summary("romance").cast(Set.of(personService.findByFirstAndLastName("kathleen","kennedy"), personService.findByFirstAndLastName("Peter","Brown"))).genre(Set.of(genreService.findByName("Adventure"))).languages(Set.of(languageList.get(0))).build());
+		showService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(1998, 7, 1)).title("Konstantinou & Elenhs").summary("comedy").cast(Set.of(personService.findByFirstAndLastName("David","Heyman"), personService.findByFirstAndLastName("Tom","Cruise"))).genre(Set.of(genreService.findByName("Comedy"), genreService.findByName("Adventure"))).languages(Set.of(languageList.get(0), languageList.get(1))).build());
+		showService.create(Series.builder().originCountry("GREECE").rating(3).releaseDate(LocalDate.of(2000, 1, 1)).title("Duo ksenoi").summary("comedy").cast(Set.of(personService.findByFirstAndLastName("Natali","Portman"), personService.findByFirstAndLastName("George","Clooney"))).genre(Set.of(genreService.findByName("Comedy"))).languages(Set.of(languageList.get(0), languageList.get(1))).build());
+		showService.create(Series.builder().originCountry("GREECE").rating(5).releaseDate(LocalDate.of(1998, 1, 1)).title("Egglhmata").summary("comedy").cast(Set.of(personService.findByFirstAndLastName("Natali","Portman"), personService.findByFirstAndLastName("Kevin","Feige"))).genre(Set.of(genreService.findByName("Adventure"))).languages(Set.of(languageList.get(1))).build());
+		showService.create(Series.builder().originCountry("GREECE").rating(2).releaseDate(LocalDate.of(1998, 1, 1)).title("Sto para pente").summary("comedy").cast(Set.of(personService.findByFirstAndLastName("George","Clooney"), personService.findByFirstAndLastName("Tom","Cruise"))).genre(Set.of(genreService.findByName("Comedy"))).languages(Set.of(languageList.get(0), languageList.get(1))).build());
+		showService.create(Series.builder().originCountry("GREECE").rating(2).releaseDate(LocalDate.of(2005, 1, 1)).title("Singles").summary("comedy").cast(Set.of(personService.findByFirstAndLastName("Angelina","Jolie"), personService.findByFirstAndLastName("Brand","Pitt"))).genre(Set.of(genreService.findByName("Action"), genreService.findByName("Drama"))).languages(Set.of(languageList.get(0), languageList.get(1))).build());
 		
 		//season
 		seasonService.create(Season.builder().series((Series) showService.findSeriesByTitle("Singles").get(0)).seasonNumber(1).build());
 		seasonService.create(Season.builder().series((Series) showService.findSeriesByTitle("Singles").get(0)).seasonNumber(2).build());
 		seasonService.create(Season.builder().series((Series) showService.findSeriesByTitle("Egglhmata").get(0)).seasonNumber(1).build());
 		
-		//episodeService.create(Episode.builder().episodeNumber(1).season(seasonService.findBySeasonNumber(1)).build());
-       /* reviewService.create(Review.builder().reviewText("Very Good").show(showService.findByTitle("Singles").get(0)).submitDate(LocalDate.of(2021,4, 16)).build());
-        reviewService.create(Review.builder().reviewText("Good").show(showService.findByTitle("Egglhmata").get(0)).submitDate(LocalDate.of(2021,3, 11)).build());
-        reviewService.create(Review.builder().reviewText("Bad").show(showService.findByTitle("Spy").get(0)).submitDate(LocalDate.of(2021,7, 10)).build());*/
+		episodeService.create(Episode.builder().episodeNumber(1).episodeTitle("Tete").season(seasonService.findBySeasonNumberAndSeriesTitle(1, "Singles")).build());
+		episodeService.create(Episode.builder().episodeNumber(2).episodeTitle("Tata").season(seasonService.findBySeasonNumberAndSeriesTitle(1, "Singles")).build());
+		episodeService.create(Episode.builder().episodeNumber(1).episodeTitle("bobob").season(seasonService.findBySeasonNumberAndSeriesTitle(2, "Singles")).build());
+		episodeService.create(Episode.builder().episodeNumber(2).episodeTitle("fafafafa").season(seasonService.findBySeasonNumberAndSeriesTitle(2, "Singles")).build());
+		episodeService.create(Episode.builder().episodeNumber(1).episodeTitle("toto").season(seasonService.findBySeasonNumberAndSeriesTitle(1, "Egglhmata")).build());
+		episodeService.create(Episode.builder().episodeNumber(2).episodeTitle("tete").season(seasonService.findBySeasonNumberAndSeriesTitle(1, "Egglhmata")).build());
+		
+	
 	}
 	
 	private Set<Review> generateRandomReviewSet(Show show) {

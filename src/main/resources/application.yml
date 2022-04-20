@@ -68,8 +68,3 @@ spring:
       pool:
         size: 2
       thread-name-prefix: scheduler-
-logging:
-  level:
-    org:
-      hibernate:
-        type: trace

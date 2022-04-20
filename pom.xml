@@ -19,23 +19,6 @@
 		<maven.version>3.8</maven.version>
 	</properties>
 
-	<dependencyManagement>
-		<dependencies>
-			<!--
-			Asynchronous Logging @see https://logging.apache.org/log4j/2.x/manual/async.html
-			Hint:
-			Don't forget to set system property
-			-Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
-			 to make all loggers asynchronous
-			-->
-			<dependency>
-				<groupId>com.lmax</groupId>
-				<artifactId>disruptor</artifactId>
-				<version>${disruptor-maven-plugin.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,7 +45,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<artifactId>spring-boot-starter</artifactId>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
@@ -77,6 +60,18 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+		<dependency>
+						<!--
+			Asynchronous Logging @see https://logging.apache.org/log4j/2.x/manual/async.html
+			Hint:
+			Don't forget to set system property
+			-Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+			 to make all loggers asynchronous
+			-->
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>${disruptor-maven-plugin.version}</version>
 		</dependency>
 
 		<dependency>

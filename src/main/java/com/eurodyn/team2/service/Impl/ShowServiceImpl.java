@@ -62,7 +62,7 @@ public class ShowServiceImpl extends BaseServiceImpl<Show> implements ShowServic
 	
 	
 	@CacheEvict(cacheNames = "shows", allEntries = true)
-	@Scheduled(cron = "0 * * * * 1-5")
+	@Scheduled(cron = "* 0/5 * * * 1-5")
 	public void evictCaches() {
 		logger.debug("Evict shows caches");
 	}

@@ -45,7 +45,7 @@ public class PersonServiceImpl extends BaseServiceImpl<Person> implements Person
 	}
 	
 	@CacheEvict(cacheNames = "persons", allEntries = true)
-	@Scheduled(cron = "0 * * * * 1-5")
+	@Scheduled(cron = "* 0/5 * * * 1-5")
 	public void evictCaches() {
 		logger.debug("Evict persons caches");
 	}

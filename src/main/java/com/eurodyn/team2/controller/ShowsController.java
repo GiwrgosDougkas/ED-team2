@@ -36,4 +36,9 @@ public class ShowsController extends AbstractController<Show> {
 	public ResponseEntity<ApiResponse<List<Show>>> findByTitle(@PathVariable("title") String title) {
 		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(showService.findByTitle(title)).build());
 	}
+	
+	@GetMapping("getByGenre/{genre}")
+	public ResponseEntity<ApiResponse<List<Show>>> findByGenre(@PathVariable("genre") String genre) {
+		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(showService.findByGenre(genre)).build());
+	}
 }

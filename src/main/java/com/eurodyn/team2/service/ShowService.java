@@ -7,6 +7,8 @@ import java.util.List;
 public interface ShowService extends BaseService<Show, Long> {
 	
 	List<Show> findAll();
-
+	
 	List<Show> findByTitle(String title);
+	
+	List<Show> findByGenre(String genre);
 }

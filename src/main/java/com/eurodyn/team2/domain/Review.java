@@ -29,7 +29,7 @@ public class Review extends BaseModel {
 	@Column(name = "SUBMIT_DATE", nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate submitDate;
-	
+
 	@ManyToOne
 	private Show show;
 }

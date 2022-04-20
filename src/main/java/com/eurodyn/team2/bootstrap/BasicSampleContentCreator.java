@@ -44,6 +44,7 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
 
 
         //add person
+
         personService.create(Person.builder().firstname("Angelina").lastname("Jolie").dateOfBirth(LocalDate.of(1982, 10, 10)).gender(Gender.FEMALE).role(PersonRole.ACTOR).build());
         personService.create(Person.builder().firstname("Brand").lastname("Pitt").dateOfBirth(LocalDate.of(1987, 2, 19)).gender(Gender.MALE).role(PersonRole.ACTOR).build());
         personService.create(Person.builder().firstname("George").lastname("Clooney").dateOfBirth(LocalDate.of(1957, 3, 5)).gender(Gender.MALE).role(PersonRole.ACTOR).build());
@@ -57,18 +58,25 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
         personService.create(Person.builder().firstname("Peter").lastname("Brown").dateOfBirth(LocalDate.of(1958, 5, 18)).gender(Gender.MALE).role(PersonRole.STAFF).build());
         personService.create(Person.builder().firstname("Michael").lastname("Ronne").dateOfBirth(LocalDate.of(1988, 8, 28)).gender(Gender.MALE).role(PersonRole.STAFF).build());
 
+
         //add movie
-        showService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2021, 1, 1)).title("Spy").summary("comedy").languages(Set.of(languageList.get(0))).reviews(generateRandomReviewSet()).build());
-        showService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2009, 12, 1)).title("The Hangover I").summary("comedy").build());
-        showService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2011, 11, 15)).title("The Hangover II").summary("comedy").build());
-        showService.create(Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2013, 7, 12)).title("The Hangover III").summary("comedy").build());
-        showService.create(Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2001, 3, 19)).title("The Lord of the rings I").summary("adventure").build());
-        showService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2002, 9, 1)).title("The Lord of the rings II").summary("adventure").build());
-        showService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2003, 1, 8)).title("The Lord of the rings III").summary("adventure").build());
-        showService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2001, 11, 7)).title("Fast 2 and Furious").summary("action").build());
-        showService.create(Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2003, 1, 1)).title("2 Fast 2 Furious").summary("action").build());
-        showService.create(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2003, 11, 11)).title("Fast and Furious Tokyo Drift").summary("action").build());
-        showService.create(Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2009, 2, 11)).title("Fast and Furious 4").summary("action").build());
+        List<Movie> movieList = List.of(Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2021, 1, 1)).title("Spy").summary("comedy").languages(Set.of(languageList.get(0))).build(),
+                Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2009, 12, 1)).title("The Hangover I").summary("comedy").build(),
+                Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2011, 11, 15)).title("The Hangover II").summary("comedy").build(),
+                Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2013, 7, 12)).title("The Hangover III").summary("comedy").build(),
+                Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2001, 3, 19)).title("The Lord of the rings I").summary("adventure").build(),
+                Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2002, 9, 1)).title("The Lord of the rings II").summary("adventure").build(),
+                Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2003, 1, 8)).title("The Lord of the rings III").summary("adventure").build(),
+                Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2001, 11, 7)).title("Fast 2 and Furious").summary("action").build(),
+                Movie.builder().originCountry("USA").rating(5).releaseDate(LocalDate.of(2003, 1, 1)).title("2 Fast 2 Furious").summary("action").build(),
+                Movie.builder().originCountry("USA").rating(3).releaseDate(LocalDate.of(2003, 11, 11)).title("Fast and Furious Tokyo Drift").summary("action").build(),
+                Movie.builder().originCountry("USA").rating(4).releaseDate(LocalDate.of(2009, 2, 11)).title("Fast and Furious 4").summary("action").build());
+
+
+        for (Movie movie : movieList) {
+            movie.setReviews(generateRandomReviewSet(movie));
+            showService.create(movie);
+        }
 
         //add series
         showService.create(Series.builder().originCountry("GREECE").rating(4).releaseDate(LocalDate.of(2000, 3, 11)).title("10 lepta kurhgma").summary("comedy").build());
@@ -84,7 +92,7 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
         //movieService.create(Season.builder().series((Series)movieService.findByTitle("Singles").get(0)).build());
     }
 
-    private Set<Review> generateRandomReviewSet() {
+    private Set<Review> generateRandomReviewSet(Show show) {
         Set<Review> reviewSet = new HashSet<>();
 
         Random rand = new Random();
@@ -94,7 +102,7 @@ public class BasicSampleContentCreator extends BaseComponent implements CommandL
         for (int i = 0; i < randomNum; i++) {
 
             String generatedRandomString = Long.toHexString(Double.doubleToLongBits(Math.random()));
-            reviewSet.add(Review.builder().submitDate(LocalDate.of(2001, 4, 10)).reviewText(generatedRandomString).build());
+            reviewSet.add(Review.builder().submitDate(LocalDate.of(2001, 4, 10)).reviewText(generatedRandomString).show(show).build());
         }
 
         return reviewSet;

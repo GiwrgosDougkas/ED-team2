@@ -15,4 +15,6 @@ public interface ShowService extends BaseService<Show, Long> {
 	List<Show> findSeriesByTitle(String title);
 	
 	List<Show> findSeriesByGenre(String genre);
+
+	List<Show> searchShow(String searchText);
 }

@@ -6,6 +6,7 @@
  */
 package com.eurodyn.team2.controller;
 
+import com.eurodyn.team2.domain.Person;
 import com.eurodyn.team2.domain.Show;
 import com.eurodyn.team2.service.BaseService;
 import com.eurodyn.team2.service.ShowService;
@@ -34,6 +35,7 @@ public class ShowsController extends AbstractController<Show> {
 	
 	@GetMapping("getMovieByTitle/{title}")
 	public ResponseEntity<ApiResponse<List<Show>>> findMovieByTitle(@PathVariable("title") String title) {
+		List<Show> one = showService.searchShow("Spy");
 		return ResponseEntity.ok(ApiResponse.<List<Show>>builder().data(showService.findMovieByTitle(title)).build());
 	}
 	

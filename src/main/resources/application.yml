@@ -61,3 +61,10 @@ spring:
       platform: h2
   main:
     web-application-type: servlet
+  cache:
+    cache-names: persons, shows
+  task:
+    scheduling:
+      pool:
+        size: 2
+      thread-name-prefix: scheduler-
